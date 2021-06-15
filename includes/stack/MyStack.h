@@ -2,7 +2,7 @@
 #define _STACK_H
 
 #include "../node/node.h"
-#include "../linked_list_functions/linkedlistfunctionsTemplated.h"
+#include "../linked_list_functions/linked_list_functions.h"
 #include <iostream>
 #include <cassert>
 using namespace std;
