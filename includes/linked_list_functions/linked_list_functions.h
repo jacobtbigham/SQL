@@ -261,22 +261,22 @@ T remove(node<T>*& head, node<T>* remove_me)
 {
     assert(head != nullptr);
     assert(remove_me != nullptr);
-    // if (head == delete_me)  IS THIS NECESSARY? WILL IT WORK WHEN REMOVE_ME IS HEAD?
-    // {
-    //     if (head->_next == nullptr)
-    //     {
-    //         T item = head->_item;
-    //         delete head;
-    //         head = nullptr;
-    //         return item;
-    //     }
-    //     node<T>* old_head = head;
-    //     T old_head_item = old_head->_item;
-    //     head = old_head->_next;
-    //     head->_prev = nullptr;
-    //     delete old_head
-    //     return old_head_item;
-    // }
+    if (head == remove_me)
+    {
+        if (head->_next == nullptr)
+        {
+            T item = head->_item;
+            delete head;
+            head = nullptr;
+            return item;
+        }
+        node<T>* old_head = head;
+        T old_head_item = old_head->_item;
+        head = old_head->_next;
+        head->_prev = nullptr;
+        delete old_head;
+        return old_head_item;
+    }
     node<T>* next = remove_me->_next;
     node<T>* prev = remove_me->_prev;
     T removed_item = remove_me->_item;
