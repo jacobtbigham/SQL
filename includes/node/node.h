@@ -43,7 +43,7 @@ struct node{
      * @param print_me the node to print
      * @return ostream& the output stream printed to
      */
-    friend ostream& operator << (ostream& outs, const node<T>& print_me)
+    friend ostream& operator <<(ostream& outs, const node<T>& print_me)
     {
         outs << "[" << print_me._item << "]->";
         return outs;

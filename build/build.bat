@@ -5,4 +5,4 @@
 
 
 
-g++ -std=gnu++11 -o linked_list_test ../_test/linked_list_functions_test.cpp -Igoogletest/googletest/include -pthread -Lgoogletest/build/lib -lgtest
+g++ -std=gnu++11 -o queue_test ../_test/queue_test.cpp -Igoogletest/googletest/include -pthread -Lgoogletest/build/lib -lgtest
