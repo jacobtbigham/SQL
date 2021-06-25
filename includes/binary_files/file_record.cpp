@@ -1,9 +1,16 @@
-#include "./file_record.h"
+/**
+ * @file file_record.cpp
+ * @author Jacob Bigham (jacob@jacobtbigham.com)
+ * @brief FileRecord implementation
+ * @version 0.1
+ * @date 2021-06-24
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 
-#include <cmath>
+#include "./file_record.h"
 #include <iostream>
-#include <iomanip>
-#include <set>
 #include <vector>
 #include <string>
 #include <cstring>
@@ -11,7 +18,36 @@
 
 using namespace std;
 
-long FileRecord::num_records = -1;
+long FileRecord::num_records = 0;
+
+FileRecord::FileRecord()
+{
+    recno = -1;
+    _record[0][0] = '\0'; // null byte represents the end of data
+}
+
+FileRecord::FileRecord(const vector<string>& v)
+{
+    int items_in_record = (v.size() < MAX) ? v.size() : MAX;
+    for (int rec = 0; rec < items_in_record; ++rec)
+    {
+        string curr = v.at(rec);
+        int curr_size = (curr.size() < MAX) ? curr.size() : MAX;
+        for (int i = 0; i < (MAX - curr_size); ++i) // pad with spaces
+        {
+            _record[rec][i] = ' ';
+        }
+        for (int i = 0; i < curr_size; i++) // write data to record
+        {
+            _record[rec][i + (MAX - curr_size)] = curr.at(i);
+        }
+    }
+    if (v.size() < MAX) // indicate end of record
+    {
+        _record[v.size()][0] = '\0';
+    }
+    recno = num_records++;
+}
 
 int FileRecord::write(fstream& outs)
 {
@@ -34,9 +70,9 @@ long FileRecord::read(fstream& ins, long _recno)
     for (int i = 0; i < MAX; ++i)
     {
         string next_in = "";
+        char next;
         for (int j = 0; j < MAX; ++j)
         {
-            char next;
             ins.get(next);
             next_in += next;
         }

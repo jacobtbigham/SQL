@@ -5,4 +5,4 @@
 
 
 
-g++ -std=gnu++11 -o queue_test ../_test/queue_test.cpp -Igoogletest/googletest/include -pthread -Lgoogletest/build/lib -lgtest
+g++ -std=gnu++11 -o queue_test ../_test/queue_test.cpp ../includes/binary_files/utilities.cpp ../includes/binary_files/file_record.cpp -Igoogletest/googletest/include -pthread -Lgoogletest/build/lib -lgtest
