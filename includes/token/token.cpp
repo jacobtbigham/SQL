@@ -1,3 +1,14 @@
+/**
+ * @file token.cpp
+ * @author Jacob Bigham (jacob@jacobtbigham.com)
+ * @brief Tokken implementation
+ * @version 0.1
+ * @date 2021-08-03
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 #include "./token.h"
 #include "./constants.h"
 #include <iostream>
@@ -18,7 +29,7 @@ Token::Token(string str, int type)
 
 ostream& operator<<(ostream& outs, const Token& t)
 {
-    outs << "|" + t.token_str() << "|";
+    outs << "|" + t.value() << "|";
     return outs;
 }
 
@@ -26,7 +37,6 @@ int Token::type() const
 {
     return _type;
 }
-
 
 string Token::type_string() const
 {
@@ -45,9 +55,4 @@ string Token::type_string() const
         default:
             return "NO STATE";
     }
-}
-
-string Token::token_str() const
-{
-    return _token;
 }

@@ -13,12 +13,17 @@ void initialize_table(int (&table)[MAX_ROWS][MAX_COLUMNS])
     }
 }
 
-void add_rule(int (&table)[MAX_ROWS][MAX_COLUMNS], int start_state, int input, int end_state)
+void add_rule(int (&table)[MAX_ROWS][MAX_COLUMNS],
+              int start_state,
+              int input, 
+              int end_state)
 {
     table[start_state][input] = end_state;
 }
 
-int next_state(int const (&table)[MAX_ROWS][MAX_COLUMNS], int start_state, int input)
+int next_state(int const (&table)[MAX_ROWS][MAX_COLUMNS],
+               int start_state,
+               int input)
 {
     return table[start_state][input];
 }

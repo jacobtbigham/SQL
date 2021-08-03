@@ -8,7 +8,7 @@
 #include <algorithm>
 #include <vector>
 
-#include "../queue/MyQueue.h"
+#include "../queue/queue.h"
 
 using namespace std;
 int Table::select_number = 1;
@@ -118,7 +118,7 @@ Table Table::select(vectorstr fields, string field, string op, string operand)
     vector<int> selected_recnos{};
     int index_of_field = column_to_index.get(field);
     MMap<string, int> field_data = data.at(index_of_field);
-    if (op == "=")
+    if (op == "=" || op == "==")
     {
         if (field_data.contains(operand))
         {

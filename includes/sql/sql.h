@@ -1,5 +1,5 @@
-#ifndef _SQL_H
-#define _SQL_H
+#ifndef SQL_H
+#define SQL_H
 
 #include "../parser/parser.h"
 #include "../table/table.h"

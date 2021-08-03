@@ -30,51 +30,51 @@ mmap_ss Parser::parse_tree()
     tokenizer.set_string(curr_input);
     Token t;
     tokenizer >> t;
-    if (t.token_str() == "make") // make table
+    if (t.value() == "make") // make table
     {
         parsed.insert("command", "make");
         for (int i = 0; i < 3; ++i) tokenizer >> t; // eat " table "
         tokenizer >> t;
-        parsed.insert("table_name", t.token_str());
+        parsed.insert("table_name", t.value());
         for (int i = 0; i < 3; ++i) tokenizer >> t; // eat " fields "
         while (tokenizer.more())
         {
             tokenizer >> t;
             if (t.type_string() == "ALPHA")
             {
-                parsed.insert("col", t.token_str());
+                parsed.insert("col", t.value());
             }
         }
     }
-    else if (t.token_str() == "create") // make table
+    else if (t.value() == "create") // make table
     {
         parsed.insert("command", "create");
         for (int i = 0; i < 3; ++i) tokenizer >> t; // eat " table "
         tokenizer >> t;
-        parsed.insert("table_name", t.token_str());
+        parsed.insert("table_name", t.value());
         for (int i = 0; i < 3; ++i) tokenizer >> t; // eat " fields "
         while (tokenizer.more())
         {
             tokenizer >> t;
             if (t.type_string() == "ALPHA")
             {
-                parsed.insert("col", t.token_str());
+                parsed.insert("col", t.value());
             }
         }
     }
-    else if (t.token_str() == "insert") // insert into
+    else if (t.value() == "insert") // insert into
     {
         parsed.insert("command", "insert");
         for (int i = 0; i < 3; ++i) tokenizer >> t; // eat " into "
         tokenizer >> t;
-        parsed.insert("table_name", t.token_str());
+        parsed.insert("table_name", t.value());
         for (int i = 0; i < 3; ++i) tokenizer >> t; // eat " values "
         while (tokenizer.more())
         {
             tokenizer >> t;
             if (t.type_string() == "ALPHA" || t.type_string() == "NUMBER")
             {
-                parsed.insert("values", t.token_str());
+                parsed.insert("values", t.value());
             }
         }
     }
@@ -83,17 +83,17 @@ mmap_ss Parser::parse_tree()
         parsed.insert("command", "select");
         tokenizer >> t; // eat space
         tokenizer >> t;
-        while (t.token_str() != "from")
+        while (t.value() != "from")
         {
-            if (t.type_string() == "ALPHA" || t.token_str() == "*")
+            if (t.type_string() == "ALPHA" || t.value() == "*")
             {
-                parsed.insert("fields", t.token_str());
+                parsed.insert("fields", t.value());
             }
             tokenizer >> t;
         }
         tokenizer >> t; // eat space
         tokenizer >> t;
-        parsed.insert("table_name", t.token_str());
+        parsed.insert("table_name", t.value());
         tokenizer >> t;
         tokenizer >> t;
         if (tokenizer.more()) // where present
@@ -104,7 +104,7 @@ mmap_ss Parser::parse_tree()
             {
                 if (t.type_string() != "SPACE")
                 {
-                    parsed.insert("condition", t.token_str());
+                    parsed.insert("condition", t.value());
                 }
                 tokenizer >> t;
             }

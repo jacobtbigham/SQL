@@ -1,3 +1,14 @@
+/**
+ * @file stokenize.cpp
+ * @author Jacob Bigham (jacob@jacobtbigham.com)
+ * @brief String Tokenizer implementation
+ * @version 0.1
+ * @date 2021-08-03
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 #include "./stokenize.h"
 #include "./constants.h"
 #include "./token.h"
@@ -22,6 +33,7 @@ STokenizer::STokenizer(char str[])
     make_table();
 }
 
+// This defines all the rules that govern tokenizing for SQL commands
 void STokenizer::make_table()
 {
     initialize_table(_table);

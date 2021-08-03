@@ -373,13 +373,11 @@ public:
     /**
      * @brief Print the contents of the Queue to the specified output stream
      * 
-     * @tparam TT the type of data stored in the Queue
      * @param outs the output stream to print to 
      * @param print_me the Queue to print
      * @return ostream& the output stream printed to
      */
-    template<typename TT>
-    friend ostream& operator << (ostream& outs, const Queue<TT>& print_me)
+    friend ostream& operator << (ostream& outs, const Queue<T>& print_me)
     {
         Iterator it = print_me.begin();
         while (it != print_me.end())

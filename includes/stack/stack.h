@@ -1,5 +1,5 @@
-#ifndef _STACK_H
-#define _STACK_H
+#ifndef STACK_H
+#define STACK_H
 
 /**
  * @file stack.h
@@ -309,13 +309,11 @@ public:
     /**
      * @brief Print the contents of the Stack to the specified output stream
      * 
-     * @tparam TT the type of data stored in the Stack
      * @param outs the output stream to print to
      * @param print_me the Stack to print
      * @return ostream& the output stream printed to
      */
-    template<typename TT>
-    friend ostream& operator<<(ostream& outs, const Stack<TT>& print_me)
+    friend ostream& operator<<(ostream& outs, const Stack<T>& print_me)
     {
         Iterator it = print_me.begin();
         while (it != print_me.end())
